@@ -1,3 +1,28 @@
 <template name="cheneyClanPage">
 	<h1>Cheney Clan</h1>
+	<div class = "outer">
+		<ol class = "peopleList">
+			{{#each personInClan}}
+				{{>personTile}}
+			{{/each}}
+		</ol>
+		<ol class = "wishList">{{>wishList}}</ol>
+	</div>
+
+
+</template>
+
+
+<template name ="personTile">
+	<li class = "player {{selected}}">
+		<span class = "name">{{getName}}</span>
+	</li>
+</template>
+
+<template name = "wishList">
+ 	<li class = "wishItems">
+ 		{{#each wishItems}}
+ 			Test
+ 		{{/each}}
+ 	</li>
 </template>

@@ -1,0 +1,59 @@
+
+.wishList {
+	float:right;
+	display: inline-block;
+	margin:auto;
+	/*width: 200px;*/
+
+}
+
+.peopleList {
+	border-top: 1px solid #f1f1f1;
+  counter-reset: ol-counter;
+  list-style-type: none;
+  margin: 0 0 1em;
+  padding: 0;
+  display: inline-block;
+}
+.player {
+  border-bottom: 1px solid #f1f1f1;
+  cursor: pointer;
+  padding: .5em 0;
+  position: relative;
+  overflow: hidden;
+  transition: background 300ms ease-out;
+  border-left: 4px solid white;
+}
+
+.player:before {
+  color: #999;
+  content: counter(ol-counter);
+  counter-increment: ol-counter;
+  display: inline-block;
+  font-weight: 300;
+  line-height: 3em;
+  text-align: center;
+  vertical-align: middle;
+  width: 3em;
+}
+
+.player.selected {
+  background-color: #fefff4;
+  border-left: #eb5f3a 4px solid;
+}
+
+.player .name {
+  display: inline-block;
+  font-size: 1.25em;
+  font-weight: 300;
+  vertical-align: middle;
+}
+
+player:hover {
+  background-color: #fefff4;
+}
+
+.outer {
+  /*margin: 0 auto;*/
+  max-width: 200px;
+}

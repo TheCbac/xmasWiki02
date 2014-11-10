@@ -1,14 +1,5 @@
 Meteor.startup(function() {
 
-	var cheneyClanId;
-	if (Groups.find().count()===0){
-		cheneyClanId = Groups.insert({
-			name:"CheneyClan",
-			members:[],
-			admins:[]
-		});
-	}
-
 	var craigId, adrienneId, brianId, kathleenId, bruceId, crisId;
 	if (Meteor.users.find().count() === 0){
 		craigId = Accounts.createUser({
@@ -69,6 +60,38 @@ Meteor.startup(function() {
 				lastName:'Cheney',
 				groups:[cheneyClanId]
 			}
+		});
+	}
+
+	var bowId,  kittyId;
+	if (items.find().count()===0){
+
+		bowId = items.insert({
+			owner: craigId,
+			gifter: brianId,
+			details: {
+				link: "www.google.com",
+				cost: "$25.99"
+			}
+		});
+
+		kittyId = items.insert({
+			owner: craigId,
+			gifter: adrienneId,
+			details: {
+				link: "www.reuters.com",
+				cost: "$7.99"
+			}
+		});
+
+	}
+
+		var cheneyClanId;
+	if (Groups.find().count()===0){
+		cheneyClanId = Groups.insert({
+			name:"CheneyClan",
+			members:[craigId, bruceId, brianId, adrienneId, kathleenId, crisId],
+			admins:[craigId]
 		});
 	}
 });
