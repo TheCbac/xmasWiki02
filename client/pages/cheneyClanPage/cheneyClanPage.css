@@ -3,8 +3,19 @@
 	float:right;
 	display: inline-block;
 	margin:auto;
+  border-style:solid;
+  border: 2px;
 	/*width: 200px;*/
 
+}
+
+.wishArea {
+  border:2px;
+  border-style: solid;
+  border-color: black;
+  display: inline-block;
+  position: fixed;
+  top:90px;
 }
 
 .peopleList {
@@ -13,7 +24,6 @@
   list-style-type: none;
   margin: 0 0 1em;
   padding: 0;
-  display: inline-block;
 }
 .player {
   border-bottom: 1px solid #f1f1f1;
@@ -56,4 +66,8 @@ player:hover {
 .outer {
   /*margin: 0 auto;*/
   max-width: 200px;
+  display:inline-block;
+  border-style:solid;
+  border-color: black;
+
 }

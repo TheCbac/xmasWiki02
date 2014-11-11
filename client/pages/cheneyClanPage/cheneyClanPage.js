@@ -13,6 +13,12 @@ Template.cheneyClanPage.helpers({
 	}
 });
 
+Template.cheneyClanPage.rendered = function () {
+	Session.set("selectedPlayer", Meteor.userId());
+};
+
+
+
 Template.personTile.helpers({
 	getName: function() {
 		return this.profile.firstName;
@@ -32,6 +38,29 @@ Template.personTile.events({
 
 Template.wishList.helpers({
 	wishItems: function () {
-		return [1,2];
+		var currentPerson = Session.get("selectedPlayer");
+		return items.find({owner:currentPerson});
+	},
+
+	itemName: function() {
+		return this.details.name;
+	},
+
+	gifter: function(){
+		if (Session.get('selectedPlayer') == Meteor.userId() ){
+			return "";
+		}
+
+		else{
+			var person = Meteor.users.findOne({_id:this.gifter});
+			var selectedName = Meteor.users.findOne({_id:Session.get('selectedPlayer')});
+			return person.profile.firstName + " is getting this for " +selectedName.profile.firstName ;
+		}
+	},
+
+	//should chache the peron _id 
+	link: function() {
+		return this.details.link;
 	}
+
 });

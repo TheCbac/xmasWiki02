@@ -6,10 +6,10 @@
 				{{>personTile}}
 			{{/each}}
 		</ol>
+	</div>
+	<div class="wishArea">
 		<ol class = "wishList">{{>wishList}}</ol>
 	</div>
-
-
 </template>
 
 
@@ -20,9 +20,13 @@
 </template>
 
 <template name = "wishList">
- 	<li class = "wishItems">
- 		{{#each wishItems}}
- 			Test
- 		{{/each}}
- 	</li>
+ 	
+ 	{{#each wishItems}}
+ 		<li class = "wishItems">
+ 			<span class = itemName>{{itemName}}</span>
+ 			<p class=gifter>{{gifter}}</p>
+ 			<p class=link ><a href="{{link}}">{{link}}</a></p>
+ 		</li>
+ 	{{/each}}
+ 	
 </template>

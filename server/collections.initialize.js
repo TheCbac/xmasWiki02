@@ -63,13 +63,14 @@ Meteor.startup(function() {
 		});
 	}
 
-	var bowId,  kittyId;
+	var bowId,  kittyId, chocolateId, zoombaShoeId;
 	if (items.find().count()===0){
 
 		bowId = items.insert({
 			owner: craigId,
 			gifter: brianId,
 			details: {
+				name:"a cool bow",
 				link: "www.google.com",
 				cost: "$25.99"
 			}
@@ -79,8 +80,29 @@ Meteor.startup(function() {
 			owner: craigId,
 			gifter: adrienneId,
 			details: {
+				name: "a Big Kitty ",
 				link: "www.reuters.com",
 				cost: "$7.99"
+			}
+		});
+
+		chocolateId = items.insert({
+			owner: brianId,
+			gifter: adrienneId,
+			details: {
+				name: "Chocolate ",
+				link: "www.reuters.com",
+				cost: "$7.99"
+			}
+		});
+
+		zoombaShoeId = items.insert({
+			owner: kathleenId,
+			gifter: adrienneId,
+			details: {
+				name: "Zoomba Shoe",
+				link: "www.jcpenny.com",
+				cost: "$98"
 			}
 		});
 
