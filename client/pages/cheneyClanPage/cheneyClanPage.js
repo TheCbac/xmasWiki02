@@ -39,7 +39,14 @@ Template.personTile.events({
 Template.wishList.helpers({
 	wishItems: function () {
 		var currentPerson = Session.get("selectedPlayer");
-		return items.find({owner:currentPerson});
+		var itemsList = items.find({owner:currentPerson});
+		
+		if (itemsList.count()===0) {
+			return false;
+		}
+		else{
+			return itemsList;
+		}
 	},
 
 	itemName: function() {
@@ -61,6 +68,18 @@ Template.wishList.helpers({
 	//should chache the peron _id 
 	link: function() {
 		return this.details.link;
-	}
+	},
 
+	recipient:function() {
+		if (Meteor.user() !==undefined) {
+
+			var selectedName = Meteor.users.findOne({_id:Session.get('selectedPlayer')});
+			return selectedName.profile.firstName;
+		}
+	},
+
+	
 });
+
+
+

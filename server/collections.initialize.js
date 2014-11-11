@@ -8,7 +8,8 @@ Meteor.startup(function() {
 			profile: {
 				firstName: 'Craig',
 				lastName:'Cheney',
-				groups:[cheneyClanId]
+				groups:[cheneyClanId],
+				gender:"Male",
 			}
 		});
 
@@ -18,7 +19,8 @@ Meteor.startup(function() {
 			profile: {
 				firstName: 'Adrienne',
 				lastName:'Cheney',
-				groups:[cheneyClanId]
+				groups:[cheneyClanId],
+				gender:"Female",
 			}
 		});
 
@@ -28,7 +30,8 @@ Meteor.startup(function() {
 			profile: {
 				firstName: 'Brian',
 				lastName:'Cheney',
-				groups:[cheneyClanId]
+				groups:[cheneyClanId],
+				gender:"Male",
 			}
 		});
 
@@ -38,7 +41,8 @@ Meteor.startup(function() {
 			profile: {
 				firstName: 'Kathleen',
 				lastName:'Buck',
-				groups:[cheneyClanId]
+				groups:[cheneyClanId],
+				gender:"Female",
 			}
 		});		
 
@@ -48,7 +52,8 @@ Meteor.startup(function() {
 			profile: {
 				firstName: 'Bruce',
 				lastName:'Cheney',
-				groups:[cheneyClanId]
+				groups:[cheneyClanId],
+				gender:"Male",
 			}
 		});
 
@@ -58,7 +63,8 @@ Meteor.startup(function() {
 			profile: {
 				firstName: 'Cris',
 				lastName:'Cheney',
-				groups:[cheneyClanId]
+				groups:[cheneyClanId],
+				gender:"Female",
 			}
 		});
 	}

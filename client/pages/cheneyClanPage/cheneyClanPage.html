@@ -1,14 +1,17 @@
 <template name="cheneyClanPage">
 	<h1>Cheney Clan</h1>
-	<div class = "outer">
-		<ol class = "peopleList">
-			{{#each personInClan}}
-				{{>personTile}}
-			{{/each}}
-		</ol>
-	</div>
-	<div class="wishArea">
-		<ol class = "wishList">{{>wishList}}</ol>
+
+	<div class="middleView">
+		<div class = "people">
+			<ol class = "peopleList">
+				{{#each personInClan}}
+					{{>personTile}}
+				{{/each}}
+			</ol>
+		</div>
+		<div class="wishArea">
+			<ol class = "wishList">{{>wishList}}</ol>
+		</div>
 	</div>
 </template>
 
@@ -21,12 +24,24 @@
 
 <template name = "wishList">
  	
- 	{{#each wishItems}}
- 		<li class = "wishItems">
- 			<span class = itemName>{{itemName}}</span>
- 			<p class=gifter>{{gifter}}</p>
- 			<p class=link ><a href="{{link}}">{{link}}</a></p>
- 		</li>
- 	{{/each}}
+ 	<!-- There's a better way to do this, so that wishItems doesn't get called multiple times -->
+ 	{{#if wishItems}}
+ 		{{#each wishItems}}
+	 		<li class = "wishItems">
+	 			<span class = itemName>
+	 				{{itemName}}
+	 				<div class="addButton"><i class="fa fa-gift "></i></div>
+	 				
+	 			</span>
+	 			<p class=gifter>{{gifter}}</p>
+	 			<p class=link ><a href="http://{{link}}">{{link}}</a></p>
+	 		</li>
+ 		{{/each}}
+ 	{{else}}
+ 		<div class="noWishItems">{{recipient}} doesn't have any item's on {{genderProNoun}} wishlist yet! </div>
+ 	{{/if}}
+	
+ 		
+ 	
  	
 </template>
