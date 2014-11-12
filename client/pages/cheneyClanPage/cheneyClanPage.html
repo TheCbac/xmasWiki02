@@ -30,7 +30,7 @@
 	 		<li class = "wishItems">
 	 			<span class = itemName>
 	 				{{itemName}}
-	 				<div class="addButton"><i class="fa fa-gift "></i></div>
+	 				<button class="Button giftButton"><i class="fa fa-gift "></i></button>
 	 				
 	 			</span>
 	 			<p class=gifter>{{gifter}}</p>
@@ -38,10 +38,42 @@
 	 		</li>
  		{{/each}}
  	{{else}}
- 		<div class="noWishItems">{{recipient}} doesn't have any item's on {{genderProNoun}} wishlist yet! </div>
+ 		<div class="noWishItems">{{recipient}} doesn't have any items on {{genderProNoun}} wishlist yet! </div>
  	{{/if}}
-	
- 		
- 	
+ 	{{>addItemTemplate}}
  	
 </template>
+
+<template name="addItemTemplate">
+	{{#if addItem}}
+		{{>newItemError}}
+		<li class="wishItems addNewItem">
+			<form id="newItemForm">
+				<input id="giftName" placeholder="Gift Name">
+				<label for="linkName">URL</label>
+				<input id ="linkName" placeholder="www.google.com">
+				<input id ="giftCost" placeholder="$">
+				<button id="newGiftSubmitBtn" type="submit" class="btn btn-default">
+					Create
+				</button>
+			</form>
+			<button class="Button addNewItmBtn " >
+				<i class="fa fa-minus-square"></i>
+			</button>
+		</li>
+	{{else}}
+		<li class="wishItems addNewItem">Add new Item<button class="Button addNewItmBtn " ><i class="fa fa-plus-square"></i></button> </li>
+	{{/if}}
+</template>
+
+<template name="newItemError">
+	{{#if error}}
+    	<div id="entryError">
+     		<div class='alert alert-danger'>{{error}}</div>
+    	</div>
+  {{/if}}
+</template>
+
+
+
+

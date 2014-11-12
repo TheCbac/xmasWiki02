@@ -22,3 +22,10 @@ Template.registerHelper("genderProNoun", function(){
 
 	return "their";
 });
+
+// Template.registerHelper("toggleSession", function (sessionKey){
+// 	var currentState = Session.get(sessionKey);
+// 	var newState = !currentState;
+// 	Session.set(sessionKey, newState);
+// 	return newState;
+// });

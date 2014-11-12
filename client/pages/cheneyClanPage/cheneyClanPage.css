@@ -5,6 +5,7 @@
 	margin:auto;
   border-style:solid;
   border: 2px;
+  list-style-type: none;
 	/*width: 200px;*/
 
 }
@@ -35,12 +36,10 @@
   border-color: rgba(128, 128, 128, 0.79);
 }
 
-.addButton {
+.Button {
   float:right;
   margin-top: 10px;
   margin-right: 5px;
-  border:2px solid black;
-  border-radius: 20%;
   padding: 0px 2px;
 }
 
@@ -107,4 +106,8 @@
   font-size:1.5em;
   color: gray;
   font-style: italic;
+}
+
+.addNewItem{
+  border-bottom: 0;
 }

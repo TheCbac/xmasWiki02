@@ -36,6 +36,12 @@ Template.personTile.events({
 	}
 });
 
+Template.wishList.events({
+	"click .giftButton" : function(event, template){
+		console.log("pressed gift");
+	}
+});
+
 Template.wishList.helpers({
 	wishItems: function () {
 		var currentPerson = Session.get("selectedPlayer");
@@ -77,8 +83,65 @@ Template.wishList.helpers({
 			return selectedName.profile.firstName;
 		}
 	},
+});
 
-	
+Session.setDefault("addItemBtnPressed", false);
+Session.setDefault("newItemError", null);
+
+Template.addItemTemplate.events({
+	'click .addNewItmBtn' : function(event, template){
+		console.log("pressed");
+
+		var currentState = Session.get("addItemBtnPressed");
+		var newState = !currentState;
+		Session.set("addItemBtnPressed", newState);
+		console.log(newState);
+	},
+
+	'submit #newItemForm' :function(event, template){
+		event.preventDefault();
+
+		var giftName = template.find("#giftName").value;
+		var linkName = template.find("#linkName").value;
+		var giftCost = template.find("#giftCost").value;
+		if(!giftName.length){
+			Session.set("newItemError", "Name is Blank");
+					
+		}	
+		else if(!linkName.length){
+			Session.set("newItemError", "URL is blank");
+		}
+		else{
+
+			newId = items.insert({
+				owner:Meteor.userId(),
+				gifter:null,
+				details:{
+					name:giftName,
+					link:linkName,
+					cost:giftCost
+				}
+			});
+			Session.set("newItemError", null);
+		}
+
+		
+	}
+});
+
+
+
+Template.addItemTemplate.helpers({
+	addItem: function() {
+		return Session.get("addItemBtnPressed");
+	},
+
+});
+
+Template.newItemError.helpers({
+	error: function () {
+		return Session.get("newItemError");
+	}
 });
 
 

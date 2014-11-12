@@ -86,7 +86,7 @@ Meteor.startup(function() {
 			owner: craigId,
 			gifter: adrienneId,
 			details: {
-				name: "a Big Kitty ",
+				name: "a Big Kitty",
 				link: "www.reuters.com",
 				cost: "$7.99"
 			}
