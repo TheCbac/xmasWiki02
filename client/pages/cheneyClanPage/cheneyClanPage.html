@@ -10,6 +10,7 @@
 			</ol>
 		</div>
 		<div class="wishArea">
+			{{>addItemTemplate}}
 			<ol class = "wishList">{{>wishList}}</ol>
 		</div>
 	</div>
@@ -25,12 +26,14 @@
 <template name = "wishList">
  	
  	<!-- There's a better way to do this, so that wishItems doesn't get called multiple times -->
+
  	{{#if wishItems}}
  		{{#each wishItems}}
 	 		<li class = "wishItems">
 	 			<span class = itemName>
 	 				{{itemName}}
-	 				<button class="Button giftButton"><i class="fa fa-gift "></i></button>
+	 				{{>giftButton}}
+	 				
 	 				
 	 			</span>
 	 			<p class=gifter>{{gifter}}</p>
@@ -40,29 +43,38 @@
  	{{else}}
  		<div class="noWishItems">{{recipient}} doesn't have any items on {{genderProNoun}} wishlist yet! </div>
  	{{/if}}
- 	{{>addItemTemplate}}
- 	
+</template>
+
+<template name="giftButton">
+	{{#if iAmUser }}
+		<button class="Button removeButton"><i class="fa fa-times"></i></button>
+	{{else}}
+		<button class="Button {{giftIconClass}}"><i class="fa {{giftIcon}} "></i></button>
+	{{/if}}
 </template>
 
 <template name="addItemTemplate">
 	{{#if addItem}}
 		{{>newItemError}}
-		<li class="wishItems addNewItem">
+		<div class="wishItems addNewItem">
 			<form id="newItemForm">
 				<input id="giftName" placeholder="Gift Name">
 				<label for="linkName">URL</label>
 				<input id ="linkName" placeholder="www.google.com">
-				<input id ="giftCost" placeholder="$">
+				<label for="giftCost">Cost</label>
+				<input id ="giftCost" placeholder="Optional">
 				<button id="newGiftSubmitBtn" type="submit" class="btn btn-default">
 					Create
 				</button>
 			</form>
-			<button class="Button addNewItmBtn " >
+			<button class="Button addNewItmBtn" >
 				<i class="fa fa-minus-square"></i>
 			</button>
-		</li>
+		</div>
 	{{else}}
-		<li class="wishItems addNewItem">Add new Item<button class="Button addNewItmBtn " ><i class="fa fa-plus-square"></i></button> </li>
+		{{#if iAmUser}}
+		<div class="wishItems addNewItem">Add new Item<button class="Button addNewItmBtn " ><i class="fa fa-plus-square"></i></button> </div>
+		{{/if}}
 	{{/if}}
 </template>
 

@@ -23,6 +23,10 @@ Template.registerHelper("genderProNoun", function(){
 	return "their";
 });
 
+Template.registerHelper("iAmUser", function(){
+	return (Session.get("selectedPlayer") == Meteor.userId());
+});
+
 // Template.registerHelper("toggleSession", function (sessionKey){
 // 	var currentState = Session.get(sessionKey);
 // 	var newState = !currentState;

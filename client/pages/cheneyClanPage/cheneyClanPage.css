@@ -19,6 +19,7 @@
   /*position: fixed;*/
   width: 650px;
   height: 388px;
+  overflow: auto;
 }
 
 
@@ -36,6 +37,10 @@
   border-color: rgba(128, 128, 128, 0.79);
 }
 
+.itemName{
+  font-weight: bold;
+}
+
 .Button {
   float:right;
   margin-top: 10px;
@@ -49,6 +54,7 @@
   list-style-type: none;
   margin: 0 0 1em;
   padding: 0;
+  overflow:auto;
 /*  border: 1px;
   border-style: solid;
   border-color: black;*/
@@ -109,5 +115,17 @@
 }
 
 .addNewItem{
-  border-bottom: 0;
+  /*border-bottom: 1px;*/
+  float:right;
+  color: grey;
+  font-size: 1.2em;
+  font-style: italic;
+}
+
+.addNewItmBtn{
+  margin-bottom: 20px;
+}
+
+.alert{
+  color:red;
 }

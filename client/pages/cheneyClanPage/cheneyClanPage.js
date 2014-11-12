@@ -36,11 +36,11 @@ Template.personTile.events({
 	}
 });
 
-Template.wishList.events({
-	"click .giftButton" : function(event, template){
-		console.log("pressed gift");
-	}
-});
+// Template.wishList.events({
+// 	"click .giftButton" : function(event, template){
+// 		console.log("pressed gift");
+// 	}
+// });
 
 Template.wishList.helpers({
 	wishItems: function () {
@@ -67,7 +67,15 @@ Template.wishList.helpers({
 		else{
 			var person = Meteor.users.findOne({_id:this.gifter});
 			var selectedName = Meteor.users.findOne({_id:Session.get('selectedPlayer')});
-			return person.profile.firstName + " is getting this for " +selectedName.profile.firstName ;
+			if (person!== undefined){
+				return person.profile.firstName + " is getting this for " +selectedName.profile.firstName ;
+			}
+
+			else{
+				return "No one is getting this for " + selectedName.profile.firstName + " yet";
+			}
+			
+			
 		}
 	},
 
@@ -123,6 +131,7 @@ Template.addItemTemplate.events({
 				}
 			});
 			Session.set("newItemError", null);
+			Session.set("addItemBtnPressed", false);
 		}
 
 		
@@ -135,6 +144,66 @@ Template.addItemTemplate.helpers({
 	addItem: function() {
 		return Session.get("addItemBtnPressed");
 	},
+});
+
+
+Template.giftButton.helpers({
+	giftIcon : function(){
+		if (this.gifter === Meteor.userId() ){
+			return "fa-ban";
+		}
+		else{
+			return "fa-gift";
+		}
+	},
+
+	giftIconClass: function() {
+		if (this.gifter === Meteor.userId() ){
+			return "ungiftButton";
+		}
+
+		else{
+			return "giftButton";
+		}
+	}
+});
+
+Template.giftButton.events({
+	'click .removeButton' : function(event, template){
+		
+		reply = confirm("Are you sure you want to delete "+ template.data.details.name +"?");
+		if (reply){
+			items.remove(template.data._id);
+		}
+
+		else{}
+	},
+
+	'click .giftButton' : function(event, template){
+		var owner = Meteor.users.findOne(template.data.owner).profile.firstName;
+		reply = confirm("Are you sure you want to get " + template.data.details.name + " for " +owner);	
+		if (reply) {
+
+			items.update({_id:template.data._id},
+				{ $set:
+					{gifter:Meteor.userId()} 
+				}
+			);
+		}
+	},
+
+	'click .ungiftButton' : function(event, template){
+		var owner = Meteor.users.findOne(template.data.owner).profile.firstName;
+		reply = confirm("Are you sure you want don't want to get " + template.data.details.name + " for " +owner);	
+		if (reply) {
+
+			items.update({_id:template.data._id},
+				{ $set:
+					{gifter:null} 
+				}
+			);
+		}
+	}
 
 });
 
