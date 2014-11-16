@@ -3,10 +3,9 @@ Template.cheneyClanPage.helpers({
 		if (Meteor.user() !==undefined) {
 			var clanIds = Groups.findOne({name:"CheneyClan"});
 			var members = clanIds.members;
-
 			var people =  Meteor.users.find({ _id : {$in:members}},
-											{sort: {email:1}
-																			} );
+											{sort: {email:1}}
+											 );
 			
 			return people;
 		}
@@ -88,7 +87,12 @@ Template.wishList.helpers({
 		if (Meteor.user() !==undefined) {
 
 			var selectedName = Meteor.users.findOne({_id:Session.get('selectedPlayer')});
-			return selectedName.profile.firstName;
+			if (selectedName._id === Meteor.userId()){
+				return "You don't";
+			}	
+			else{
+				return selectedName.profile.firstName +" doesn't";
+			}
 		}
 	},
 });

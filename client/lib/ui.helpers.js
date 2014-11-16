@@ -4,9 +4,12 @@ Template.registerHelper("genderProNoun", function(){
 	var id = Session.get('selectedPlayer');
 	if (id !==undefined){
 		var selectedName = Meteor.users.findOne({_id:id});
-
 		if (selectedName !== undefined){
-			if (selectedName.profile.gender === 'Male' ){
+			if (selectedName._id === Meteor.userId()){
+				return "your";
+			}
+
+			else if (selectedName.profile.gender === 'Male' ){
 				return "his";
 			}
 			else if (selectedName.profile.gender === 'Female'){

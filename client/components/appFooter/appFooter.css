@@ -6,6 +6,11 @@
  margin-top: -3em;
 }
 
+#footerText{
+	color: gray;
+font-size: .75em;
+}
+
 html, body, #container { height: 100%; }
 body > #container { height: auto; min-height: 100%; }
 
