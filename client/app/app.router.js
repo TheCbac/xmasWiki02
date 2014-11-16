@@ -8,7 +8,33 @@ Router.configure({
 	}
 });
 
+Router.onBeforeAction(function(){
+	if (!Meteor.loggingIn() && !Meteor.user()) {
+		this.redirect('/');
+	} else {
+		this.next();
+	}
+ }, {
+ 	//whitelist which routes don't need to be signed in for 
+ 	except:[
+ 	'pageNotFoundRoute',
+ 	'landingPageRoute']
+ });
+
+// Router.onBeforeAction(function() {
+// 	if (Meteor.logginIn() ) {
+// 	}
+// 	else {
+// 		this.redirect('/cheneyClan');
+// 	}
+// });
+
 Router.route('landingPageRoute', {
 	path:'/',
-	template: 'landingPage'
+	template: 'landingPage',
+});
+
+Router.route('cheneyClanRoute', {
+	path:'/cheneyClan',
+	template: 'cheneyClanPage', 
 });

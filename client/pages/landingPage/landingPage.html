@@ -1,3 +1,8 @@
 <template name = "landingPage">
-	<h1>landing Page</h1>
+	{{#if currentUser}}
+		{{goToGroup}}
+	{{else}}
+		<h1>Please sign in to view your groups!</h1>
+	{{/if}}
+	
 </template>

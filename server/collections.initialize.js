@@ -1,14 +1,5 @@
 Meteor.startup(function() {
 
-	var cheneyClanId;
-	if (Groups.find().count()===0){
-		cheneyClanId = Groups.insert({
-			name:"CheneyClan",
-			members:[],
-			admins:[]
-		});
-	}
-
 	var craigId, adrienneId, brianId, kathleenId, bruceId, crisId;
 	if (Meteor.users.find().count() === 0){
 		craigId = Accounts.createUser({
@@ -17,7 +8,8 @@ Meteor.startup(function() {
 			profile: {
 				firstName: 'Craig',
 				lastName:'Cheney',
-				groups:[cheneyClanId]
+				groups:[cheneyClanId],
+				gender:"Male",
 			}
 		});
 
@@ -27,7 +19,8 @@ Meteor.startup(function() {
 			profile: {
 				firstName: 'Adrienne',
 				lastName:'Cheney',
-				groups:[cheneyClanId]
+				groups:[cheneyClanId],
+				gender:"Female",
 			}
 		});
 
@@ -37,7 +30,8 @@ Meteor.startup(function() {
 			profile: {
 				firstName: 'Brian',
 				lastName:'Cheney',
-				groups:[cheneyClanId]
+				groups:[cheneyClanId],
+				gender:"Male",
 			}
 		});
 
@@ -47,7 +41,8 @@ Meteor.startup(function() {
 			profile: {
 				firstName: 'Kathleen',
 				lastName:'Buck',
-				groups:[cheneyClanId]
+				groups:[cheneyClanId],
+				gender:"Female",
 			}
 		});		
 
@@ -57,7 +52,8 @@ Meteor.startup(function() {
 			profile: {
 				firstName: 'Bruce',
 				lastName:'Cheney',
-				groups:[cheneyClanId]
+				groups:[cheneyClanId],
+				gender:"Male",
 			}
 		});
 
@@ -67,8 +63,63 @@ Meteor.startup(function() {
 			profile: {
 				firstName: 'Cris',
 				lastName:'Cheney',
-				groups:[cheneyClanId]
+				groups:[cheneyClanId],
+				gender:"Female",
 			}
+		});
+	}
+
+	// var bowId,  kittyId, chocolateId, zoombaShoeId;
+	// if (items.find().count()===0){
+
+	// 	bowId = items.insert({
+	// 		owner: craigId,
+	// 		gifter: brianId,
+	// 		details: {
+	// 			name:"a cool bow",
+	// 			link: "www.google.com",
+	// 			cost: "$25.99"
+	// 		}
+	// 	});
+
+	// 	kittyId = items.insert({
+	// 		owner: craigId,
+	// 		gifter: adrienneId,
+	// 		details: {
+	// 			name: "a Big Kitty",
+	// 			link: "www.reuters.com",
+	// 			cost: "$7.99"
+	// 		}
+	// 	});
+
+	// 	chocolateId = items.insert({
+	// 		owner: brianId,
+	// 		gifter: adrienneId,
+	// 		details: {
+	// 			name: "Chocolate",
+	// 			link: "www.reuters.com",
+	// 			cost: "$7.99"
+	// 		}
+	// 	});
+
+	// 	zoombaShoeId = items.insert({
+	// 		owner: kathleenId,
+	// 		gifter: adrienneId,
+	// 		details: {
+	// 			name: "Zoomba Shoe",
+	// 			link: "www.jcpenny.com",
+	// 			cost: "$98"
+	// 		}
+	// 	});
+
+	// }
+
+		var cheneyClanId;
+	if (Groups.find().count()===0){
+		cheneyClanId = Groups.insert({
+			name:"CheneyClan",
+			members:[craigId, bruceId, brianId, adrienneId, kathleenId, crisId],
+			admins:[craigId]
 		});
 	}
 });
