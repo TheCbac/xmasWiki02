@@ -120,9 +120,9 @@ Template.addItemTemplate.events({
 			Session.set("newItemError", "Name is Blank");
 					
 		}	
-		else if(!linkName.length){
-			Session.set("newItemError", "URL is blank");
-		}
+		// else if(!linkName.length){
+		// 	Session.set("newItemError", "URL is blank");
+		// }
 		else{
 
 			newId = items.insert({
