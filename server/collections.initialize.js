@@ -1,7 +1,45 @@
 Meteor.startup(function() {
 
-	var craigId, adrienneId, brianId, kathleenId, bruceId, crisId;
+	var cheneyClanId;
+	var commAveId;
+	//I don't think any of the member ids are valid here. 
+	if (Groups.find().count()===0){
+		cheneyClanId = Groups.insert({
+			name:"CheneyClan",
+			//members:[craigId, bruceId, brianId, adrienneId, kathleenId, crisId],
+			// admins:[craigId],
+			members:[],
+			admins:[],
+			
+		});
+
+		commAveId = Groups.insert({
+			name: "CommAve",
+			members:[],
+			admins:[],
+		});
+	}
+
+
+	var craigId, adrienneId, brianId, kathleenId, bruceId, crisId, danielleId;
 	if (Meteor.users.find().count() === 0){
+		danielleId = Accounts.createUser({
+			email:'dclass@mit.edu',
+			password:'password',
+			profile: {
+				firstName: 'Danielle',
+				lastName:'Class',
+				groups:[commAveId],
+				gender:"Female",
+			}
+		});
+
+		Groups.update({_id:commAveId},{
+			$push:{
+				members:danielleId
+			}
+		});
+
 		craigId = Accounts.createUser({
 			email:'ccheney@mit.edu',
 			password:'password',
@@ -13,6 +51,13 @@ Meteor.startup(function() {
 			}
 		});
 
+		Groups.update({_id:cheneyClanId},{
+			$push:{
+				members:craigId
+			}
+		});
+
+
 		adrienneId = Accounts.createUser({
 			email:'adcheney88@gmail.com',
 			password:'password',
@@ -23,6 +68,12 @@ Meteor.startup(function() {
 				gender:"Female",
 			}
 		});
+		Groups.update({_id:cheneyClanId},{
+			$push:{
+				members:adrienneId
+			}
+		});
+
 
 		brianId = Accounts.createUser({
 			email:'briancheney2010@yahoo.com',
@@ -32,6 +83,11 @@ Meteor.startup(function() {
 				lastName:'Cheney',
 				groups:[cheneyClanId],
 				gender:"Male",
+			}
+		});
+		Groups.update({_id:cheneyClanId},{
+			$push:{
+				members:brianId
 			}
 		});
 
@@ -45,6 +101,11 @@ Meteor.startup(function() {
 				gender:"Female",
 			}
 		});		
+		Groups.update({_id:cheneyClanId},{
+			$push:{
+				members:kathleenId
+			}
+		});
 
 		bruceId = Accounts.createUser({
 			email:'bwcheney@comcast.net',
@@ -56,6 +117,11 @@ Meteor.startup(function() {
 				gender:"Male",
 			}
 		});
+		Groups.update({_id:cheneyClanId},{
+			$push:{
+				members:bruceId
+			}
+		});
 
 		crisId = Accounts.createUser({
 			email:'cmc04747@pomona.edu',
@@ -65,6 +131,11 @@ Meteor.startup(function() {
 				lastName:'Cheney',
 				groups:[cheneyClanId],
 				gender:"Female",
+			}
+		});
+		Groups.update({_id:cheneyClanId},{
+			$push:{
+				members:crisId
 			}
 		});
 	}
@@ -114,12 +185,5 @@ Meteor.startup(function() {
 
 	// }
 
-		var cheneyClanId;
-	if (Groups.find().count()===0){
-		cheneyClanId = Groups.insert({
-			name:"CheneyClan",
-			members:[craigId, bruceId, brianId, adrienneId, kathleenId, crisId],
-			admins:[craigId]
-		});
-	}
+
 });

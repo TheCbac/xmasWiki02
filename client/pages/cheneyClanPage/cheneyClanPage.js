@@ -1,19 +1,36 @@
 Template.cheneyClanPage.helpers({
 	personInClan: function () {
 		if (Meteor.user() !==undefined) {
-			var clanIds = Groups.findOne({name:"CheneyClan"});
-			var members = clanIds.members;
+			// var clanIds = Groups.findOne({name:"CheneyClan"});
+
+			var group = Groups.findOne({_id:Session.get("currentGroup")});
+			var members = group.members;
 			var people =  Meteor.users.find({ _id : {$in:members}},
 											{sort: {email:1}}
 											 );
-			
-			return people;
+			return people;	
 		}
-	}
+	},
+
+	groupName: function() {
+		if (Meteor.user() !==undefined) {
+			var groupId = Session.get("currentGroup");
+			var group = Groups.findOne({_id:groupId});
+
+			if (group){
+				return group.name;
+			}
+			// else {
+			// 	Router.go("userPage");
+			// }
+		}
+	},
 });
 
 Template.cheneyClanPage.rendered = function () {
+	// debugger
 	Session.set("selectedPlayer", Meteor.userId());
+	Session.set("currentGroup", this.data._id);
 };
 
 
@@ -102,12 +119,12 @@ Session.setDefault("newItemError", null);
 
 Template.addItemTemplate.events({
 	'click .addNewItmBtn' : function(event, template){
-		console.log("pressed");
+		//console.log("pressed");
 
 		var currentState = Session.get("addItemBtnPressed");
 		var newState = !currentState;
 		Session.set("addItemBtnPressed", newState);
-		console.log(newState);
+		//console.log(newState);
 	},
 
 	'submit #newItemForm' :function(event, template){
